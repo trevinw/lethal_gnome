@@ -1,45 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "A8QzZoigsku+yhMF9CwZVDFn1p28bxf2LSX8B94mkv+xStP2M2xym3gWf6BAkeoMrftaP7wZ0zuUH6dCP2xAZw==",
-  "success": false,
-  "projectFilePath": "C:\\Users\\trevi\\Source\\Repos\\lethal_gnome\\LethalCompanyTemplate\\LethalCompanyTemplate.csproj",
+  "dgSpecHash": "KI//yMhlVfaDFcCYqmIc6RPy17oW+Mv2w8soJAUjy2HFyRvOIx7QvmidViQE7w8qkjOWHvXbVlBXZGchQJs1Gg==",
+  "success": true,
+  "projectFilePath": "D:\\gitrepos\\lethal_gnome\\LethalCompanyTemplate\\LethalCompanyTemplate.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package BepInEx.Analyzers. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
-      "libraryId": "BepInEx.Analyzers",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package BepInEx.PluginInfoProps. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
-      "libraryId": "BepInEx.PluginInfoProps",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package BepInEx.Core. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
-      "libraryId": "BepInEx.Core",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    },
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Unable to find package UnityEngine.Modules. No packages exist with this id in source(s): Microsoft Visual Studio Offline Packages, nuget.org",
-      "libraryId": "UnityEngine.Modules",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.1"
-      ]
-    }
-  ]
+  "logs": []
 }
