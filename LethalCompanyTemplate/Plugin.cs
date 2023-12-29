@@ -2,13 +2,17 @@
 
 namespace LethalCompanyTemplate
 {
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin(modGUID, modName, modVersion)]
     public class Plugin : BaseUnityPlugin
     {
+        private const string modGUID = "numpties.lethal_gnome";
+        private const string modName = "Lethal Gnome";
+        private const string modVersion = "1.0.0";
+
         private void Awake()
         {
             // Plugin startup logic
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            Logger.LogInfo($"Plugin {modGUID} is loaded!");
         }
     }
 }
