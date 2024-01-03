@@ -34,13 +34,22 @@ internal class RoundManagerPatch
             return;
         }
 
-        PlayGnomeSound(GetAudioSource(enemyVents));
+        AudioSource source = GetAudioSource(enemyVents);
+        if (source == null)
+        {
+            return;
+        }
+        PlayGnomeSound(source);
         LethalGnomeModBase.nextTimeToPlayAudio = GetNextTimeToPlay();
         Debug.Log($"Playing again at {LethalGnomeModBase.nextTimeToPlayAudio}");
     }
 
     public static AudioSource GetAudioSource(EnemyVent[] enemyVents)
     {
+        if (enemyVents.Length == 0)
+        {
+            return null;
+        }
         return enemyVents[Random.Range(0, enemyVents.Length)].ventAudio;
     }
 
