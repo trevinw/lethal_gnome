@@ -24,18 +24,14 @@ internal class EnemyVentPatch
         FieldInfo rpcExecStage = vent.GetType().GetField("__rpc_exec_stage", BindingFlags.NonPublic | BindingFlags.Instance);
         if ((int)rpcExecStage.GetValue(vent) != /* __RpcExecStage.Client */ 2 && (networkManager.IsServer || networkManager.IsHost))
         {
-            Debug.Log("Is server");
             ClientRpcParams clientRpcParams = default(ClientRpcParams);
             MethodInfo beginRPC = vent.GetType().GetMethod("__beginSendClientRpc", BindingFlags.NonPublic | BindingFlags.Instance);
-            Debug.Log("Send RPC!");
             FastBufferWriter bufferWriter = (FastBufferWriter)beginRPC.Invoke(vent, new object[] { 2024010469u, clientRpcParams, RpcDelivery.Reliable });
             MethodInfo endRPC = vent.GetType().GetMethod("__endSendClientRpc", BindingFlags.NonPublic | BindingFlags.Instance);
             endRPC.Invoke(vent, new object[] { bufferWriter, 2024010469u, clientRpcParams, RpcDelivery.Reliable });
-            Debug.Log("RPC sent!");
         }
         if ((int)rpcExecStage.GetValue(vent) == /* __RpcExecStage.Client */ 2 && (networkManager.IsClient || networkManager.IsHost))
         {
-            Debug.Log("Is client");
             RoundManager.PlayRandomClip(vent.ventAudio, new AudioClip[] { LethalGnomeModBase.GnomeSound });
         }
     }
@@ -45,7 +41,6 @@ internal class EnemyVentPatch
         NetworkManager networkManager = target.NetworkManager;
         if ((object)networkManager != null && networkManager.IsListening)
         {
-            Debug.Log("RPC in!");
             FieldInfo rpcExecStage = target.GetType().GetField("__rpc_exec_stage", BindingFlags.NonPublic | BindingFlags.Instance);
             rpcExecStage.SetValue(target, /*NetworkBehaviour.__RpcExecStage.Client*/ 2);
             PlayGnomeSound((EnemyVent) target);
