@@ -5,7 +5,7 @@ using LethalGnomeMod;
 [HarmonyPatch]
 internal class RoundManagerPatch
 {
-    private const float timeBetweenSounds = 30f;
+    private const float timeBetweenSounds = 15;
     private const float playSoundJitter = 0.5f;
 
     [HarmonyPatch(typeof(RoundManager), "Update")]
@@ -34,31 +34,25 @@ internal class RoundManagerPatch
             return;
         }
 
-        AudioSource source = GetAudioSource(enemyVents);
-        if (source == null)
+        EnemyVent vent = GetEnemyVentForGnome(enemyVents);
+        if (vent == null)
         {
             return;
         }
-        PlayGnomeSound(source);
+        Debug.Log($"Playing gnome sound at {vent.transform.position}!");
+        EnemyVentPatch.PlayGnomeSound(vent);
+        Debug.Log("Gnome sound is played!");
         LethalGnomeModBase.nextTimeToPlayAudio = GetNextTimeToPlay();
         Debug.Log($"Playing again at {LethalGnomeModBase.nextTimeToPlayAudio}");
     }
 
-    public static AudioSource GetAudioSource(EnemyVent[] enemyVents)
+    public static EnemyVent GetEnemyVentForGnome(EnemyVent[] enemyVents)
     {
         if (enemyVents.Length == 0)
         {
             return null;
         }
-        return enemyVents[Random.Range(0, enemyVents.Length)].ventAudio;
-    }
-
-    public static void PlayGnomeSound(AudioSource source)
-    {
-        Debug.Log($"Playing gnome sound at {source.transform.position}!");
-        // TODO set audibleNoiseID to play over the server
-        RoundManager.PlayRandomClip(source, new AudioClip[]{ LethalGnomeModBase.GnomeSound });
-        Debug.Log("Gnome sound is played!");
+        return enemyVents[Random.Range(0, enemyVents.Length)];
     }
 
     public static double GetNextTimeToPlay()
